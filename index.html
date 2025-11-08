@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="$DAP – Dreams And Promises: Solana memecoin for village kids' education. From crypto loss to hope." />
+    <meta property="og:title" content="$DAP - Dreams And Promises" />
+    <meta property="og:description" content="5% fee funds school kits & meals. Transparent charity on Solana." />
+    <meta property="og:image" content="dap-logo.png" />
+    <title>$DAP - Dreams And Promises | Charity Memecoin</title>
+    <link rel="icon" href="dap-logo.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --green: #4CAF50;
+            --dark: #1a1a1a;
+            --light: #f9f9f9;
+            --gray: #f4f4f4;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:var(--light); color:var(--dark); line-height:1.7; overflow-x:hidden; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+        img { max-width:100%; display:block; }
+
+        /* Logo Animasi Khusus $DAP */
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); box-shadow: 0 0 20px var(--gold); }
+            50% { transform: translateY(-10px) rotate(180deg); box-shadow: 0 0 40px var(--gold); }
+        }
+        .logo img {
+            height: 70px; animation: floatGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px var(--gold));
+            transition: all .3s;
+        }
+        .logo img:hover { transform: scale(1.15) rotate(360deg); filter: drop-shadow(0 0 30px var(--gold)); }
+
+        /* Header */
+        header {
+            position:fixed; top:0; width:100%; background:var(--gold); color:var(--dark); z-index:1000;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1); padding:1rem 0; animation: slideDown 0.6s ease-out;
+        }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        nav { display:flex; justify-content:space-between; align-items:center; max-width:1300px; margin:0 auto; padding:0 2rem; }
+        nav ul { display:flex; gap:1.5rem; }
+        nav a { font-weight:600; padding:.6rem 1.2rem; border-radius:30px; transition:all .3s; position:relative; overflow:hidden; }
+        nav a::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); transition:0.5s; }
+        nav a:hover::before { left:100%; }
+        nav a:hover { background:rgba(255,255,255,.3); transform:translateY(-3px); }
+
+        /* Hero */
+        .hero {
+            height:100vh; background:url('https://via.placeholder.com/1920x1080?text=Village+Kids+Hope+with+$DAP') center/cover no-repeat;
+            display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative;
+            margin-top:80px; overflow:hidden;
+        }
+        .hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,.55); }
+        .hero-content { position:relative; z-index:2; max-width:900px; padding:2rem; }
+        .hero h1 { font-size:4rem; margin-bottom:1rem; text-shadow:2px 2px 10px rgba(0,0,0,.8); animation: zoomIn 1s ease-out; }
+        .hero p { font-size:1.35rem; margin-bottom:2rem; opacity:0; animation: fadeInUp 1s ease-out 0.5s forwards; }
+        .typewriter { overflow:hidden; border-right: .15em solid var(--gold); white-space:nowrap; margin:0 auto; font-size:1.4rem; animation: typing 3.5s steps(40, end), blink .75s step-end infinite; }
+        @keyframes typing { from { width:0 } to { width:100% } }
+        @keyframes blink { from, to { border-color:transparent } 50% { border-color:var(--gold) } }
+        @keyframes zoomIn { from { opacity:0; transform:scale(0.8); } to { opacity:1; transform:scale(1); } }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+        .btn { display:inline-block; background:var(--green); color:white; padding:1.1rem 2.8rem; border-radius:50px; font-weight:600; transition:all .3s; margin:0 .5rem; animation: pulse 2s infinite; box-shadow:0 0 20px rgba(76,175,80,.5); }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .btn:hover { transform:scale(1.1); animation: glow 1.5s infinite; }
+        .btn-outline { background:transparent; border:2px solid white; animation:none; }
+        .btn-outline:hover { background:white; color:var(--dark); }
+
+        /* Price Ticker */
+        .price-ticker { background:var(--dark); color:white; text-align:center; padding:1.5rem; font-size:1.2rem; animation: slideIn 0.8s ease-out; }
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        .price { font-weight:700; color:var(--gold); font-size:1.6rem; }
+
+        /* Sections */
+        section { padding:6rem 2rem; max-width:1300px; margin:0 auto; }
+        h2 { text-align:center; font-size:2.9rem; margin-bottom:3rem; color:var(--green); position:relative; opacity:0; transform:translateY(20px); }
+        h2.aos-animate { opacity:1; transform:translateY(0); transition:all .8s ease; }
+
+        /* Cards */
+        .token-card, .impact-card, .roadmap-content { transition:all .4s ease; opacity:0; transform:translateY(30px); }
+        .token-card.aos-animate, .impact-card.aos-animate, .roadmap-content.aos-animate { opacity:1; transform:translateY(0); }
+        .token-card:hover { transform:translateY(-15px) scale(1.03); box-shadow:0 20px 40px rgba(0,0,0,.15); }
+        .impact-card:hover { transform:scale(1.06) rotate(1deg); }
+
+        .counter { font-size:2.5rem; font-weight:700; color:var(--green); }
+        .gallery img { border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,.1); transition:all .4s; opacity:0; transform:scale(0.9); }
+        .gallery img.aos-animate { opacity:1; transform:scale(1); }
+
+        /* Donate */
+        .wallet-box { position:relative; overflow:hidden; }
+        .copy-btn { background:var(--gold); color:var(--dark); border:none; padding:.5rem 1rem; border-radius:10px; cursor:pointer; font-weight:600; transition:all .3s; }
+        .copy-btn:hover { background:#FFA500; transform:scale(1.1); }
+
+        /* Footer */
+        footer { background:var(--dark); color:white; text-align:center; padding:3rem 2rem; }
+        .social { display:flex; justify-content:center; gap:1.5rem; margin-top:1.5rem; }
+        .social a { width:50px; height:50px; background:var(--gold); color:var(--dark); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; transition:all .3s; }
+        .social a:hover { background:white; transform:scale(1.1); }
+
+        /* Responsive */
+        @media (max-width:992px) { .about-grid, .roadmap-item { grid-template-columns:1fr; } .hero h1 { font-size:2.8rem; } }
+        @media (max-width:768px) { nav { flex-direction:column; gap:1rem; } .hero h1 { font-size:2.3rem; } .typewriter { font-size:1.1rem; } }
+    </style>
+</head>
+<body>
+
+<!-- Header dengan Logo $DAP -->
+<header>
+    <nav>
+        <div class="logo">
+            <a href="#home"><img src="dap-logo.png" alt="$DAP Logo Emas 3D"></a>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#donate">Donate</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Live Price Ticker -->
+<div class="price-ticker">
+    <p>Live $DAP Price: <span class="price" id="dap-price">Loading...</span> | Market Cap: <span id="market-cap">—</span></p>
+</div>
+
+<!-- Hero dengan Logo di Tengah -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <img src="dap-logo.png" alt="$DAP" style="width:200px; margin-bottom:1rem; animation:floatGlow 3s infinite; filter:drop-shadow(0 0 25px var(--gold));">
+        <img src="dap-logo.png" alt="$DAP Logo" style="width:150px; margin:0 auto 1rem; animation: floatGlow 3s infinite; filter: drop-shadow(0 0 20px var(--gold));">
+        <h1 data-aos="zoom-in">Dreams And Promises ($DAP)</h1>
+        <p data-aos="fade-up" data-aos-delay="300">From crypto loss to village kids' hope. Every trade funds school kits & meals.</p>
+        <p class="typewriter" data-aos="fade-up" data-aos-delay="600">Turning pain into promises...</p>
+        <div data-aos="fade-up" data-aos-delay="900">
+            <a href="#donate" class="btn">Donate Now</a>
+            <a href="https://x.com/DreamsAndPromis" target="_blank" class="btn btn-outline">Follow on X</a>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" data-aos="fade-up">
+    <h2>About $DAP</h2>
+    <div class="about-grid">
+        <div class="about-text" data-aos="fade-right">
+            <p>Born from personal crypto loss. Now a Solana memecoin funding education for Indonesian village kids.</p>
+            <p>5% transaction fee → charity wallet for books, meals, and hope. Audited. Transparent. Locked.</p>
+            <ul style="margin:1.5rem 0; padding-left:1.5rem;">
+                <li>50 kits delivered</li>
+                <li>Goal: 1,000 kids in Year 1</li>
+                <li>Every SOL = real impact</li>
+            </ul>
+        </div>
+        <div class="about-img" data-aos="fade-left">
+            <img src="https://via.placeholder.com/600x500?text=Village+Kids+with+$DAP+Kits" alt="Impact">
+        </div>
+    </div>
+</section>
+
+<!-- Tokenomics -->
+<section id="tokenomics" class="tokenomics" data-aos="fade-up">
+    <h2>Tokenomics</h2>
+    <div class="token-grid">
+        <div class="token-card" data-aos="flip-left" data-aos-delay="100">
+            <h3>Total Supply</h3>
+            <p>1,000,000,000 $DAP</p>
+        </div>
+        <div class="token-card" data-aos="flip-left" data-aos-delay="200">
+            <h3>Fee</h3>
+            <p>5%: 2% Charity | 2% LP | 1% Burn</p>
+        </div>
+        <div class="token-card" data-aos="flip-left" data-aos-delay="300">
+            <h3>Allocation</h3>
+            <p>50% LP | 20% Charity | 20% Marketing | 10% Team (locked)</p>
+        </div>
+        <div class="token-card" data-aos="flip-left" data-aos-delay="400">
+            <h3>Burn</h3>
+            <p>Deflationary – 1% per trade</p>
+        </div>
+    </div>
+</section>
+
+<!-- Impact -->
+<section id="impact" class="impact" data-aos="fade-up">
+    <h2>Impact</h2>
+    <div class="impact-grid">
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="100">
+            <h3><span class="counter" data-target="50">0</span>+</h3>
+            <p>School Kits</p>
+        </div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="200">
+            <h3><span class="counter" data-target="200">0</span></h3>
+            <p>Meals Delivered</p>
+        </div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="300">
+            <h3><span class="counter" data-target="1000">0</span>+</h3>
+            <p>Community</p>
+        </div>
+    </div>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap" class="roadmap" data-aos="fade-up">
+    <h2>Roadmap</h2>
+    <div class="roadmap-item">
+        <div class="roadmap-date" data-aos="fade-right">Q4 2025</div>
+        <div class="roadmap-content" data-aos="fade-left">
+            <h3>Launch</h3>
+            <p>Raydium listing + first kits</p>
+        </div>
+    </div>
+    <div class="roadmap-item">
+        <div class="roadmap-date" data-aos="fade-right">Q1 2026</div>
+        <div class="roadmap-content" data-aos="fade-left">
+            <h3>Expansion</h3>
+            <p>500 kits + audit</p>
+        </div>
+    </div>
+    <div class="roadmap-item">
+        <div class="roadmap-date" data-aos="fade-right">Q2 2026</div>
+        <div class="roadmap-content" data-aos="fade-left">
+            <h3>NFTs</h3>
+            <p>Village Kids collection</p>
+        </div>
+    </div>
+    <div class="roadmap-item">
+        <div class="roadmap-date" data-aos="fade-right">Q3 2026</div>
+        <div class="roadmap-content" data-aos="fade-left">
+            <h3>Global</h3>
+            <p>CEX + 1,000 kids</p>
+        </div>
+    </div>
+</section>
+
+<!-- Donate -->
+<section id="donate" class="donate" data-aos="fade-up">
+    <h2>Donate</h2>
+    <p>Send to charity wallet for kids' future.</p>
+    <div class="wallet-box">
+        Wallet: <span id="wallet">9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM</span>
+        <button class="copy-btn" onclick="copyWallet()">Copy</button>
+    </div>
+    <form id="supportForm">
+        <input type="text" placeholder="Your Name/Wallet" required />
+        <input type="text" placeholder="Amount (optional)" />
+        <textarea rows="4" placeholder="Message for the kids..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 $DAP. Dreams into reality.</p>
+    <div class="social">
+        <a href="https://x.com/DreamsAndPromis">X</a>
+        <a href="https://t.me/dapmemecoin">TG</a>
+        <a href="https://solscan.io/token/...">Solscan</a>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Copy Wallet
+    function copyWallet() {
+        const wallet = document.getElementById('wallet').textContent;
+        navigator.clipboard.writeText(wallet);
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    }
+
+    // Form
+    document.getElementById('supportForm').addEventListener('submit', e => {
+        e.preventDefault();
+        alert('Thanks! Your support helps kids dream.');
+        e.target.reset();
+    });
+
+    // Counter
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / 200;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 20);
+            } else counter.innerText = target;
+        };
+        const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) updateCount();
+        }, { threshold: 0.5 });
+        observer.observe(counter.parentElement);
+    });
+
+    // Price Demo
+    setTimeout(() => {
+        document.getElementById('dap-price').textContent = '$0.000012';
+        document.getElementById('market-cap').textContent = '$12K';
+    }, 1000);
+</script>
+</body>
+</html>
